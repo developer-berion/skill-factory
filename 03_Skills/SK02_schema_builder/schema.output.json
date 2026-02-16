@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OutputSchemaTemplate",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "needs_clarification",
+        "handoff",
+        "error"
+      ]
+    },
+    "data": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audit": {
+      "type": "object",
+      "properties": {
+        "normalization_report": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tool_trace_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "normalization_report",
+        "assumptions"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings",
+    "audit"
+  ]
+}

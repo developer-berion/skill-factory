@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InputSchemaTemplate",
+  "type": "object",
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "raw_text": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "raw_text"
+  ]
+}

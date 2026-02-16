@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "type": "smoke",
+    "count": 10
+  },
+  "cases": [
+    {
+      "id": "smoke_01",
+      "input": {
+        "request_id": "REQ1",
+        "raw_text": "EJEMPLO"
+      },
+      "expected": {
+        "status": "success"
+      }
+    }
+  ]
+}

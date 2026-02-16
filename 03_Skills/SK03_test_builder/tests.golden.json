@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "type": "golden",
+    "count": 30
+  },
+  "cases": [
+    {
+      "id": "golden_01",
+      "input": {
+        "request_id": "REQ1",
+        "raw_text": "EJEMPLO"
+      },
+      "expected": {
+        "status": "success"
+      }
+    }
+  ]
+}
