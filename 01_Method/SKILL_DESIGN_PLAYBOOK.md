@@ -1,4 +1,4 @@
-# Skill Design Playbook — Producción (v2.0)
+# Skill Design Playbook — Producción (v2.1)
 
 **Propósito:** Documentar cómo diseñar *skills* para agentes de IA con estándar de producción: confiables, reutilizables, auditables y mantenibles.  
 **Enfoque:** B2B, alta fricción operativa y riesgo (turismo, finanzas, logística, etc.).  
@@ -70,6 +70,8 @@ Todo skill en producción debe tener:
 ### 2.2 Estructura premium (recomendada)
 La versión premium agrega operación real:
 - **Risk Matrix** (riesgo financiero/legal/reputacional)
+- **Artifact Skeletons** (Sección 3.3 obligatoria para evitar alucinaciones de output)
+- **Tech Radar & Discovery** (Sección 6.1 para gobierno de ciclo de vida)
 - **Observabilidad** (logs, tracing, redaction)
 - **SLO/Cost envelope** (latencia, tokens, timeouts)
 - **Regresión + Golden Set** (30 casos)
@@ -117,6 +119,10 @@ Incluye:
 - warnings: []
 - audit: { normalization_report, assumptions, tool_trace_id }
 
+## 3.3 Artifact Skeletons (Obligatorio en Premium)
+Si el skill genera archivos (YAML, Rego, SQL, MD), provee esqueletos base aquí:
+*   **template_type**: `content_skeleton`
+
 # 4) Política “Ask vs Assume”
 Never assume:
 - fechas, pax, moneda, condiciones de cancelación, documentación
@@ -128,12 +134,18 @@ Thresholds:
 
 # 5) Procedure — Pasos operativos (verificables)
 1) Validar inputs (schema + reglas condicionales)
-2) Normalizar (fechas, moneda, nombres, unidades)
-3) Ejecutar tools (con límites)
-4) Verificar resultados (consistencia + reglas de negocio)
-5) Responder (JSON final + mensajes al usuario)
+2) **Check Tech Radar**: ¿El recurso solicitado está en "deprecated" o "hold"?
+3) Normalizar (fechas, moneda, nombres, unidades)
+4) Ejecutar tools (con límites)
+5) Verificar resultados (consistencia + reglas de negocio)
+6) Responder (JSON final + mensajes al usuario)
 
 # 6) Guardrails (Constraints)
+## 6.1 Tech Radar Governance
+- Lista blanca de herramientas y stacks permitidos.
+- Política de bloqueo para tecnologías obsoletas.
+
+## 6.2 Prohibiciones generales
 - Prohibiciones absolutas
 - Disclaimers obligatorios
 - Reglas por riesgo (ver Risk Matrix)
